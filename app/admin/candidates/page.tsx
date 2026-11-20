@@ -56,7 +56,7 @@ function CandidatesContent() {
   // Online Pay State
   const [onlinePayFor, setOnlinePayFor] = useState<any>(null);
   const [onlinePayForm, setOnlinePayForm] = useState({
-    amount: "499",
+    amount: "999",
     link: "",
   });
   const [linkSentData, setLinkSentData] = useState<Record<string, number>>({});
@@ -285,7 +285,7 @@ function CandidatesContent() {
   };
 
   const markAsPaidCash = async (id: string) => {
-    const amountStr = window.prompt("Enter payment amount (e.g., 499 or 799):", "499");
+    const amountStr = window.prompt("Enter payment amount:", "999");
     if (!amountStr) return;
 
     const amount = Number(amountStr);
@@ -335,14 +335,14 @@ We are pleased to confirm that your payment has been successfully received. Welc
 \u{2705} Your Premium Candidate service is now *Active*.
 
 \u{2B50} *We Value Your Feedback*
-We would love to hear about your experience with Shiv Shakti Multi Service.
+We would love to hear about your experience with Aditya Group Manpower.
 \u{1F449} [Leave a Review: https://g.page/r/CZZBLKQak0G_EBE/review]
 
 Thank you for choosing us! \u{1F91D}
 
 *Warm Regards,*
-*Shiv Shakti Multi Service*
-_Recruitment & Placement Services_
+*Aditya Group Manpower*
+_Manpower & Placement Services_
 ━━━━━━━━━━━━━━━━━━━━━`;
 
           window.open(`https://wa.me/91${rd.phone}?text=${encodeURIComponent(waText)}`, "_blank");
@@ -387,7 +387,7 @@ _Recruitment & Placement Services_
 
 Dear Sir/Mam ${schedulingFor.user?.fullName || "Candidate"},
 
-Greetings from Shiv Shakti Multi Service.
+Greetings from Aditya Group Manpower.
 
 We are pleased to inform you that your interview has been officially scheduled with ${interviewForm.companyName}. Kindly find the interview details below:
 
@@ -406,8 +406,8 @@ We wish you success in your interview and look forward to your presence.
 Please Provide Rating : https://g.page/r/CZZBLKQak0G_EBE/review 
 
 Warm Regards,
-Shiv Shakti Multi Service
-Recruitment • Placement • Multi Services`;
+Aditya Group Manpower
+Manpower & Placement Services`;
 
         // Open WhatsApp automatically with pre-filled message
         window.open(`https://wa.me/91${schedulingFor.phone}?text=${encodeURIComponent(waText)}`, "_blank");
@@ -487,15 +487,15 @@ We are pleased to inform you that your profile has been processed successfully. 
 Thank you! \u{1F91D}
 
 *Warm Regards,*
-*Shiv Shakti Multi Service*
-_Recruitment & Placement Services_
+*Aditya Group Manpower*
+_Manpower & Placement Services_
 ━━━━━━━━━━━━━━━━━━━━━`;
 
     window.open(`https://wa.me/91${onlinePayFor.phone}?text=${encodeURIComponent(waText)}`, "_blank");
     
     setLinkSentData(prev => ({ ...prev, [onlinePayFor.id]: Number(onlinePayForm.amount) }));
     setOnlinePayFor(null);
-    setOnlinePayForm({ amount: "499", link: "" });
+    setOnlinePayForm({ amount: "999", link: "" });
   };
 
   const confirmOnlinePayment = async (id: string, amountToConfirm: number) => {
@@ -540,14 +540,14 @@ We are pleased to confirm that your online payment has been successfully receive
 \u{2705} Your Premium Candidate service is now *Active*.
 
 \u{2B50} *We Value Your Feedback*
-We would love to hear about your experience with Shiv Shakti Multi Service.
+We would love to hear about your experience with Aditya Group Manpower.
 \u{1F449} [Leave a Review: https://g.page/r/CZZBLKQak0G_EBE/review]
 
 Thank you for choosing us! \u{1F91D}
 
 *Warm Regards,*
-*Shiv Shakti Multi Service*
-_Recruitment & Placement Services_
+*Aditya Group Manpower*
+_Manpower & Placement Services_
 ━━━━━━━━━━━━━━━━━━━━━`;
 
           window.open(`https://wa.me/91${rd.phone}?text=${encodeURIComponent(waText)}`, "_blank");
@@ -1499,7 +1499,7 @@ _Recruitment & Placement Services_
                   required
                   value={onlinePayForm.amount}
                   onChange={(e) => setOnlinePayForm({ ...onlinePayForm, amount: e.target.value })}
-                  placeholder="e.g. 499"
+                  placeholder="e.g. 999"
                   className="w-full rounded-xl border px-3 py-2 outline-none focus:border-indigo-600"
                 />
               </div>

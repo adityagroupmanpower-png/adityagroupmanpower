@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin, Phone, MessageCircle } from "lucide-react";
 
 const links = [
   ["Home", "/#home"],
@@ -27,11 +27,9 @@ const FacebookIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
-const LinkedinIcon = ({ size = 16 }: { size?: number }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-    <rect width="4" height="12" x="2" y="9"/>
-    <circle cx="4" cy="4" r="2"/>
+const YoutubeIcon = ({ size = 17 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z" />
   </svg>
 );
 
@@ -45,24 +43,25 @@ export function SiteFooter() {
           {/* Brand */}
           <div>
             <Link href="/" className="inline-flex items-center gap-3">
-              <div className="relative h-10 w-10 overflow-hidden rounded-lg bg-white dark:bg-black">
+              <div className="relative h-11 w-20 overflow-hidden rounded-lg bg-white dark:bg-black">
                 <Image
-                  src="/logo_img.png"
-                  alt="Shiv Shakti Multi Service"
+                  src="/aditya-group-official.png"
+                  alt="Aditya Group"
                   fill
-                  sizes="40px"
-                  className="object-contain p-1"
+                  unoptimized
+                  sizes="80px"
+                  className="object-contain p-2"
                   priority
                 />
               </div>
 
               <div>
                 <p className="text-base font-extrabold uppercase tracking-[0.1em]">
-                  Shiv Shakti
+                  Aditya Group
                 </p>
 
                 <p className="text-[8px] font-semibold uppercase tracking-[0.25em] text-zinc-400 dark:text-zinc-600">
-                  Multi Service
+                  Manpower &amp; Placement Services
                 </p>
               </div>
             </Link>
@@ -113,32 +112,50 @@ export function SiteFooter() {
 
             <div className="mt-3 space-y-2.5">
               <a
-                href="https://maps.app.goo.gl/vYPjDSKxoQpwb3Eq6"
+                href="https://g.co/kgs/fZ2bX86"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs text-zinc-300 transition hover:text-white dark:text-zinc-700 dark:hover:text-black"
               >
                 <MapPin size={14} />
-                Haridwar, Uttarakhand
+                Shop No. 9, Hari Market, Denso Chowk, Bahadarabad, Uttarakhand 249402
               </a>
 
               <a
-                href="mailto:jobshiring.hrteam@gmail.com"
+                href="mailto:adityagroupmanpower@gmail.com"
                 className="flex items-center gap-2 text-xs text-zinc-300 dark:text-zinc-700"
               >
                 <Mail size={14} />
 
                 <span className="truncate">
-                  jobshiring.hrteam@gmail.com
+                  adityagroupmanpower@gmail.com
                 </span>
               </a>
 
               <a
-                href="tel:+917088642658"
+                href="tel:+919411527513"
                 className="flex items-center gap-2 text-xs text-zinc-300 dark:text-zinc-700"
               >
                 <Phone size={14} />
-                +91 7088642658
+                +91 9411527513
+              </a>
+
+              <a
+                href="tel:+919458127513"
+                className="flex items-center gap-2 text-xs text-zinc-300 dark:text-zinc-700"
+              >
+                <Phone size={14} />
+                +91 9458127513
+              </a>
+
+              <a
+                href="https://wa.me/919458127513"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs text-zinc-300 transition hover:text-white dark:text-zinc-700 dark:hover:text-black"
+              >
+                <MessageCircle size={14} />
+                WhatsApp: +91 9458127513
               </a>
             </div>
           </div>
@@ -149,32 +166,18 @@ export function SiteFooter() {
               Connect With Us
             </h3>
 
-            <div className="mt-3 space-y-4">
-              <div>
-                <p className="mb-2 text-[10px] font-semibold text-zinc-500">Official</p>
-                <div className="flex gap-4">
-                  <a href="https://www.instagram.com/shivshaktimultiservice?stkn=MTh2aXo3Z2R2aWhlbw%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-[#E4405F] transition hover:opacity-80">
-                    <InstagramIcon size={16} />
-                  </a>
-                  <a href="https://www.facebook.com/share/1Dbw2Y7CJj/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] transition hover:opacity-80">
-                    <FacebookIcon size={16} />
-                  </a>
-                </div>
-              </div>
-
-              <div>
-                <p className="mb-2 text-[10px] font-semibold text-zinc-500">Founder (Shubham Machal)</p>
-                <div className="flex gap-4">
-                  <a href="https://www.instagram.com/shubhammachaloffical?stkn=MXRhNzBwYWE2aDYxeA%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer" className="text-[#E4405F] transition hover:opacity-80">
-                    <InstagramIcon size={16} />
-                  </a>
-                  <a href="https://www.facebook.com/share/1DoKnhbV1S/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" className="text-[#1877F2] transition hover:opacity-80">
-                    <FacebookIcon size={16} />
-                  </a>
-                  <a href="https://www.linkedin.com/in/shubham-machal/" target="_blank" rel="noopener noreferrer" className="text-[#0A66C2] transition hover:opacity-80">
-                    <LinkedinIcon size={16} />
-                  </a>
-                </div>
+            <div className="mt-3">
+              <p className="mb-2 text-[10px] font-semibold text-zinc-500">Official</p>
+              <div className="flex gap-4">
+                <a href="https://www.instagram.com/adityagroupmanpower" target="_blank" rel="noopener noreferrer" aria-label="Aditya Group Instagram" className="text-[#E4405F] transition hover:opacity-80">
+                  <InstagramIcon size={16} />
+                </a>
+                <a href="https://www.facebook.com/share/1CGvtYdhvW/" target="_blank" rel="noopener noreferrer" aria-label="Aditya Group Facebook" className="text-[#1877F2] transition hover:opacity-80">
+                  <FacebookIcon size={16} />
+                </a>
+                <a href="https://youtube.com/@adityagroupmanpowerharidwar?feature=shared" target="_blank" rel="noopener noreferrer" aria-label="Aditya Group YouTube" className="text-[#FF0000] transition hover:opacity-80">
+                  <YoutubeIcon size={17} />
+                </a>
               </div>
             </div>
           </div>
@@ -182,7 +185,7 @@ export function SiteFooter() {
 
         {/* Bottom */}
         <div className="flex flex-col gap-2 border-t border-white/20 py-4 text-[10px] text-zinc-400 dark:border-black/20 dark:text-zinc-600 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Shiv Shakti Multi Service.</p>
+          <p>© {new Date().getFullYear()} Aditya Group Manpower.</p>
 
           <div className="flex flex-wrap items-center gap-3">
 

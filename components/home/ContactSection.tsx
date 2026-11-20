@@ -40,7 +40,7 @@ export default function ContactSection() {
 
         const text = `Hi, I am ${formData.name}.\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
         const encodedText = encodeURIComponent(text);
-        const whatsappUrl = `https://wa.me/917088642658?text=${encodedText}`;
+        const whatsappUrl = `https://wa.me/919458127513?text=${encodedText}`;
         
         window.open(whatsappUrl, '_blank');
         toast.success("Redirecting to WhatsApp...");
@@ -262,13 +262,11 @@ export default function ContactSection() {
                       sm:leading-6
                     "
                                     >
-                                        Plot No. 1407 Salempur Mehdood
+                                        Shop No. 9, Hari Market
                                         <br />
-                                        Near Mantra Appartment
+                                        Denso Chowk, Bahadarabad
                                         <br />
-                                        Nehru Colony, Haridwar
-                                        <br />
-                                        Uttarakhand - 249403
+                                        Uttarakhand - 249402
                                     </p>
                                 </div>
                             </div>
@@ -277,7 +275,7 @@ export default function ContactSection() {
                         {/* Email */}
 
                         <a
-                            href="mailto:jobshiring.hrteam@gmail.com"
+                            href="mailto:adityagroupmanpower@gmail.com"
                             className="
                 group
                 block
@@ -340,7 +338,7 @@ export default function ContactSection() {
                       sm:text-sm
                     "
                                     >
-                                        jobshiring.hrteam@gmail.com
+                                        adityagroupmanpower@gmail.com
                                     </p>
                                 </div>
                             </div>
@@ -349,7 +347,7 @@ export default function ContactSection() {
                         {/* Phone */}
 
                         <a
-                            href="tel:+917088642658"
+                            href="tel:+919411527513"
                             className="
                 group
                 block
@@ -411,7 +409,7 @@ export default function ContactSection() {
                       sm:text-sm
                     "
                                     >
-                                        +91 7088642658
+                                        +91 9411527513, +91 9458127513, +91 9193333513
                                     </p>
                                 </div>
                             </div>

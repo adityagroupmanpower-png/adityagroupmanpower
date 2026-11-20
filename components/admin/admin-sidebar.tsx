@@ -67,11 +67,11 @@ function AdminSidebarContent() {
 
       <div className="border-b px-6 py-5">
         <h1 className="text-xl font-bold text-orange-500">
-          Shiv Shakti
+          Aditya Group
         </h1>
 
         <p className="text-sm text-zinc-500">
-          Multi Service
+          Manpower &amp; Placement Services
         </p>
       </div>
 

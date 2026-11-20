@@ -76,9 +76,10 @@ function MobileSidebarContent({
       >
         <div className="flex items-center justify-between border-b p-5">
 
-          <h2 className="text-xl font-bold">
-            Shiv Shakti Multi Service
-          </h2>
+          <div>
+            <h2 className="text-xl font-bold">Aditya Group</h2>
+            <p className="text-xs text-zinc-500">Manpower &amp; Placement Services</p>
+          </div>
 
           <button onClick={onClose}>
             <X size={22} />

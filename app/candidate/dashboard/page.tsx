@@ -114,7 +114,7 @@ export default function CandidateDashboardPage() {
         key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
         amount: order.amount,
         currency: order.currency,
-        name: "Shiv Shakti Multi Service",
+        name: "Aditya Group Manpower",
         description: "Candidate Registration Fee",
         order_id: order.id,
         handler: async function (response: any) {
@@ -330,7 +330,7 @@ export default function CandidateDashboardPage() {
               {/* PROFILE OVERVIEW */}
               <SectionCard
                 title="Profile Overview"
-                description={<>Your information saved in Shiv Shakti Multi Service.</>}
+                description={<>Your information saved in Aditya Group Manpower.</>}
               >
                 <div className="space-y-4 text-zinc-900 dark:text-white">
                   <div className="flex items-center gap-3 rounded-xl border dark:border-zinc-800 p-4">

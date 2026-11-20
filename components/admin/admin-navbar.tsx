@@ -40,10 +40,7 @@ export default function AdminNavbar({
           </button>
 
           <h1 className="text-lg font-bold text-orange-500 sm:text-xl md:text-2xl">
-            Shiv Shakti
-            <span className="hidden sm:inline">
-              {" "}Multi Service
-            </span>
+            Aditya Group
           </h1>
 
         </div>

@@ -17,13 +17,13 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.shivshaktimultiservice.co.in"),
-  title: "Shiv Shakti Multi Service | Premium Recruitment Consultancy",
-  description: "Shiv Shakti Multi Service is a modern recruitment consultancy helping teams hire with clarity and confidence.",
+  title: "Aditya Group Manpower | Premium Recruitment Consultancy",
+  description: "Aditya Group Manpower is a modern recruitment consultancy helping teams hire with clarity and confidence.",
   keywords: [
     "Recruitment in Haridwar", 
     "Job Consultancy", 
     "Hiring agency", 
-    "Shiv Shakti Multi Service", 
+    "Aditya Group Manpower", 
     "Jobs in Uttarakhand", 
     "Placement agency",
     "Career Opportunities",
@@ -36,8 +36,6 @@ export const metadata: Metadata = {
     "Staffing solutions in Uttarakhand",
     "Job placement services in Haridwar",
     "Top HR consultancy in Uttarakhand",
-    "Shubham Machal",
-    "shubhammachalofficial",
     "Industrial consultancy",
     "sidcul jobs",
     "Haridwar Jobs",
@@ -48,17 +46,17 @@ export const metadata: Metadata = {
     
   ],
   openGraph: {
-    title: "Shiv Shakti Multi Service | Premium Recruitment Consultancy",
-    description: "Shiv Shakti Multi Service is a modern recruitment consultancy helping People to get the Jobs.",
+    title: "Aditya Group Manpower | Premium Recruitment Consultancy",
+    description: "Aditya Group Manpower is a modern recruitment consultancy helping people find jobs.",
     url: "https://www.shivshaktimultiservice.co.in/",
-    siteName: "Shiv Shakti Multi Service",
+    siteName: "Aditya Group Manpower",
     locale: "en_IN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shiv Shakti Multi Service | Premium Recruitment Consultancy",
-    description: "Shiv Shakti Multi Service is a modern recruitment consultancy helping People to get the Jobs.",
+    title: "Aditya Group Manpower | Premium Recruitment Consultancy",
+    description: "Aditya Group Manpower is a modern recruitment consultancy helping people find jobs.",
   },
   alternates: {
     canonical: "/",
@@ -74,6 +72,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-zinc-950 transition-colors dark:bg-zinc-950 dark:text-zinc-50">

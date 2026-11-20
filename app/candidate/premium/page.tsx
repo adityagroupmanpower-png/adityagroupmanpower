@@ -15,7 +15,7 @@ export default function PremiumPage() {
           <div className="flex items-center gap-3">
             <Crown className="h-8 w-8 text-yellow-400" />
             <h1 className="text-4xl font-bold">
-              Shiv Shakti Multi Service Premium
+              Aditya Group Manpower Premium
             </h1>
           </div>
 
@@ -68,7 +68,7 @@ export default function PremiumPage() {
             </p>
 
             <h3 className="mt-2 text-2xl sm:text-4xl font-bold">
-              Starts at ₹499 (non-refundable)
+              ₹999 (non-refundable)
             </h3>
 
             <p className="mt-2 text-zinc-600">
@@ -78,7 +78,7 @@ export default function PremiumPage() {
           </div>
 
           <a
-            href="https://chat.whatsapp.com/YOUR_LINK"
+            href="https://wa.me/919458127513"
             target="_blank"
             className="mt-8 inline-flex items-center gap-2 rounded-xl bg-green-600 px-8 py-4 font-semibold text-white transition hover:bg-green-700"
           >

@@ -168,27 +168,28 @@ export function SiteNavbar() {
             {/* Brand */}
             <Link
               href="/"
-              aria-label="Shiv Shakti Multi Service - Home"
+              aria-label="Aditya Group - Home"
               onClick={() => setIsMobileMenuOpen(false)}
               className="group flex min-w-0 shrink items-center gap-2.5 sm:gap-3"
             >
-              <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl border border-zinc-200 bg-white transition-transform duration-200 group-hover:scale-[1.02] sm:h-12 sm:w-12 dark:border-white/10 dark:bg-zinc-900">
+              <div className="relative h-11 w-20 shrink-0 overflow-hidden rounded-xl border border-zinc-200 bg-white transition-transform duration-200 group-hover:scale-[1.02] sm:h-14 sm:w-24 dark:border-white/10 dark:bg-zinc-900">
                 <Image
-                  src="/logo_img.png"
-                  alt="Shiv Shakti Multi Service"
+                  src="/aditya-group-official.png"
+                  alt="Aditya Group"
                   fill
                   priority
-                  sizes="48px"
-                  className="object-contain p-1"
+                  unoptimized
+                  sizes="96px"
+                  className="object-contain p-2"
                 />
               </div>
 
               <div className="min-w-0">
                 <p className="truncate font-serif text-[20px] font-semibold leading-none tracking-[-0.03em] text-zinc-950 sm:text-[24px] dark:text-white">
-                  Shiv Shakti
+                  Aditya Group
                 </p>
                 <p className="mt-1 truncate text-[8px] font-medium uppercase leading-none tracking-[0.3em] text-zinc-500 sm:text-[9px] dark:text-zinc-400">
-                  Multi Service
+                  Manpower &amp; Placement Services
                 </p>
               </div>
             </Link>

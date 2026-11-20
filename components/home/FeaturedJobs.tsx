@@ -187,7 +187,7 @@ export function FeaturedJobs() {
               "
             >
               Discover opportunities across leading companies and
-              growing industries through Shiv Shakti Multi Service.
+              growing industries through Aditya Group Manpower.
             </p>
           </div>
 

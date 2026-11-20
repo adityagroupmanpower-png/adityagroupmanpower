@@ -69,7 +69,7 @@ export default function RegistrationCTA() {
             </h2>
 
             <p className="mt-4 max-w-2xl text-sm leading-6 text-zinc-600 sm:text-base sm:leading-7">
-              Create your candidate profile with Shiv Shakti Multi Service and
+              Create your candidate profile with Aditya Group Manpower and
               take the next step toward opportunities that match your career
               preferences.
             </p>
@@ -106,7 +106,7 @@ export default function RegistrationCTA() {
                 </p>
 
                 <p className="mt-1 text-3xl font-bold tracking-tight sm:text-4xl">
-                  Starts at ₹499
+                  ₹999
                 </p>
               </div>
 
@@ -263,7 +263,7 @@ export default function RegistrationCTA() {
 
         {/* Bottom note */}
         <p className="mt-6 text-center text-[10px] font-bold leading-5 text-amber-400 sm:text-xs">
-          Starts at ₹499 (non-refundable) is the candidate registration fee. Registration does not
+          ₹999 (non-refundable) is the candidate registration fee. Registration does not
           guarantee employment or selection for a particular opportunity.
         </p>
       </div>

@@ -118,8 +118,9 @@ export async function POST(req: Request) {
     };
 
     // HEADER
-    drawCenteredText("SHIV SHAKTI MULTI SERVICE", height - 55, 20, boldFont, black);
-    drawCenteredText("Sidcul, Uttarakhand, India   |   +91 7088642658   |   shivshaktimultiservice.co.in", height - 78, 7.5, regularFont, darkGray);
+    drawCenteredText("ADITYA GROUP", height - 55, 20, boldFont, black);
+    drawCenteredText("MANPOWER & PLACEMENT SERVICES", height - 76, 8.5, boldFont, darkGray);
+    drawCenteredText("Shop No. 9, Hari Market, Denso Chowk, Bahadarabad, Uttarakhand 249402", height - 88, 7.5, regularFont, darkGray);
     drawLine(height - 95, 1.2, darkGray);
 
     // TITLE
@@ -226,7 +227,7 @@ export async function POST(req: Request) {
     const thankBoxY = 100;
     drawBox(35, thankBoxY, 525, 105);
 
-    drawCenteredText("Thank you for registering with Shiv Shakti Multi Service.", thankBoxY + 65, 10, boldFont, black);
+    drawCenteredText("Thank you for registering with Aditya Group Manpower.", thankBoxY + 65, 10, boldFont, black);
     drawCenteredText("We appreciate your trust in us.", thankBoxY + 45, 9, regularFont, darkGray);
     page.drawLine({ start: { x: 150, y: thankBoxY + 28 }, end: { x: 445, y: thankBoxY + 28 }, thickness: 0.7, color: lightGray });
     drawCenteredText("This is a computer-generated receipt and does not require a physical signature.", thankBoxY + 12, 7.5, regularFont, gray);
@@ -241,13 +242,13 @@ export async function POST(req: Request) {
 
     // EMAIL
     const emailResult = await resend.emails.send({
-      from: "Shiv Shakti Multi Service <info@shivshaktimultiservice.co.in>",
+      from: "Aditya Group Manpower <info@shivshaktimultiservice.co.in>",
       to: user.email,
-      replyTo: "jobshiring.hrteam@gmail.com",
-      subject: "Payment Receipt - Shiv Shakti Multi Service",
+      replyTo: "adityagroupmanpower@gmail.com",
+      subject: "Payment Receipt - Aditya Group Manpower",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; color: #18181b;">
-          <h2 style="margin-bottom: 5px;">Shiv Shakti Multi Service</h2>
+          <h2 style="margin-bottom: 5px;">Aditya Group Manpower</h2>
           <p>Dear Sir/Mam ${user.fullName},</p>
           <p>Your candidate registration payment has been successfully verified.</p>
           <div style="border: 1px solid #e4e4e7; border-radius: 8px; padding: 18px; margin: 20px 0;">
@@ -258,7 +259,7 @@ export async function POST(req: Request) {
           </div>
           <p>Your payment receipt is attached to this email as a PDF.</p>
           <p>Please keep this receipt for your records.</p>
-          <p>Regards,<br /><strong>Shiv Shakti Multi Service</strong></p>
+          <p>Regards,<br /><strong>Aditya Group Manpower</strong></p>
         </div>
       `,
       attachments: [{ filename: `${finalReceiptNumber}.pdf`, content: pdfBuffer }],

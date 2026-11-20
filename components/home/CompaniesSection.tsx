@@ -629,7 +629,7 @@ export default function CompaniesSection() {
             "
           >
             Listing a company does not imply that it is currently
-            hiring through Shiv Shakti Multi Service.
+            hiring through Aditya Group Manpower.
           </p>
         </div>
       </div>

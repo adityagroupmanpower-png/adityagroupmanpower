@@ -12,19 +12,19 @@ export default function Home() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'EmploymentAgency',
-    name: 'Shiv Shakti Multi Service',
+    name: 'Aditya Group Manpower',
     url: 'https://www.shivshaktimultiservice.co.in/',
-    description: 'Shiv Shakti Multi Service is a modern recruitment consultancy helping People to get the Jobs.',
+    description: 'Aditya Group Manpower is a modern recruitment consultancy helping people find jobs.',
     address: {
       '@type': 'PostalAddress',
-      streetAddress: 'Nehru Colony , Near by Mantra Apartments , Sidcul ,Haridwar',
-      addressLocality: 'Haridwar',
+      streetAddress: 'Shop No. 9, Hari Market, Denso Chowk',
+      addressLocality: 'Bahadarabad',
       addressRegion: 'Uttarakhand',
-      postalCode: '249403',
+      postalCode: '249402',
       addressCountry: 'IN'
     },
-    telephone: '+917088642658',
-    email: 'jobshiring.hrteam@gmail.com'
+    telephone: ['+919411527513', '+919458127513'],
+    email: 'adityagroupmanpower@gmail.com'
   };
 
   return (
@@ -82,7 +82,7 @@ export default function Home() {
 
         {/* ===================================================
             REGISTRATION CTA
-            + STARTS AT ₹499 (NON-REFUNDABLE)
+            + ₹999 (NON-REFUNDABLE)
         ==================================================== */}
 
         <RegistrationCTA />

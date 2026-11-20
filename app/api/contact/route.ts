@@ -30,9 +30,9 @@ export async function POST(request: Request) {
 
     // Send email using Resend
     await resend.emails.send({
-      from: "Shiv Shakti Multi Service <info@shivshaktimultiservice.co.in>",
-      to: "jobshiring.hrteam@gmail.com",
-      replyTo: "jobshiring.hrteam@gmail.com",
+      from: "Aditya Group Manpower <info@shivshaktimultiservice.co.in>",
+      to: "adityagroupmanpower@gmail.com",
+      replyTo: "adityagroupmanpower@gmail.com",
       subject: `New Contact Request from ${name}`,
       html: `
         <h2>New Contact Request</h2>
