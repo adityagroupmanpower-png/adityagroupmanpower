@@ -192,6 +192,9 @@ export function SiteFooter() {
             <Link href="/terms" className="rounded-md border border-white/40 px-2.5 py-1 font-semibold text-white transition hover:bg-white hover:text-black dark:border-black/30 dark:text-black dark:hover:bg-black dark:hover:text-white">
               Terms & Conditions
             </Link>
+            <Link href="/privacy" className="rounded-md border border-white/40 px-2.5 py-1 font-semibold text-white transition hover:bg-white hover:text-black dark:border-black/30 dark:text-black dark:hover:bg-black dark:hover:text-white">
+              Privacy Policy
+            </Link>
           </div>
         </div>
 

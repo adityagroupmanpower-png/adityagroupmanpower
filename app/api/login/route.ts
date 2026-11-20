@@ -52,8 +52,6 @@ if (!success) {
       },
     });
 
-//   console.log(process.env.JWT_SECRET);
-
     if (!user) {
       return NextResponse.json(
         {
@@ -65,10 +63,6 @@ if (!success) {
     }
 
     
-
-    console.log("Entered Password:", password);
-console.log("Hash:", user.password);
-
 
 const isPasswordCorrect = await bcrypt.compare(
       password,

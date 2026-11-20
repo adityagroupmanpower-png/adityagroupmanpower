@@ -15,6 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: 'https://adityagroupmanpower.co.in/privacy',
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: 'https://adityagroupmanpower.co.in/login',
       lastModified: new Date(),
       changeFrequency: 'yearly',
