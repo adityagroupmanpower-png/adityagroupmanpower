@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.shivshaktimultiservice.co.in"),
+  metadataBase: new URL("https://adityagroupmanpower.co.in"),
   title: "Aditya Group Manpower | Premium Recruitment Consultancy",
   description: "Aditya Group Manpower is a modern recruitment consultancy helping teams hire with clarity and confidence.",
   keywords: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Aditya Group Manpower | Premium Recruitment Consultancy",
     description: "Aditya Group Manpower is a modern recruitment consultancy helping people find jobs.",
-    url: "https://www.shivshaktimultiservice.co.in/",
+    url: "https://adityagroupmanpower.co.in/",
     siteName: "Aditya Group Manpower",
     locale: "en_IN",
     type: "website",

@@ -28,9 +28,8 @@ function normalizeDatabaseUrl(value: string | undefined) {
 }
 
 const databaseUrl = normalizeDatabaseUrl(process.env.DATABASE_URL);
-const useWindowsDevelopmentAdapter =
-  process.platform === "win32" && process.env.NODE_ENV !== "production";
-const adapter = databaseUrl && useWindowsDevelopmentAdapter
+const useWindowsAdapter = process.platform === "win32";
+const adapter = databaseUrl && useWindowsAdapter
   ? new PrismaPg({
       connectionString: databaseUrl,
       ssl: { rejectUnauthorized: false },

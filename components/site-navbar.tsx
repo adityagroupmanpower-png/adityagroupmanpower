@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, type MouseEvent } from "react";
 import { ArrowRight, LogIn, LogOut, Menu, Moon, Sun, UserRound, X, Building2 } from "lucide-react";
+import type { StoredUser } from "@/lib/app-types";
 
 const navLinks = [
   { label: "Home", href: "/#home", section: "home" },
@@ -22,19 +23,21 @@ export function SiteNavbar() {
   const [isDark, setIsDark] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<StoredUser | null>(null);
   const [mounted, setMounted] = useState(false);
 
   /* Theme */
   useEffect(() => {
-    setMounted(true);
-
     const storedTheme = localStorage.getItem("theme");
     const dark = storedTheme === "dark";
 
     document.documentElement.classList.toggle("dark", dark);
     document.documentElement.style.colorScheme = dark ? "dark" : "light";
-    setIsDark(dark);
+    const frame = requestAnimationFrame(() => {
+      setMounted(true);
+      setIsDark(dark);
+    });
+    return () => cancelAnimationFrame(frame);
   }, []);
 
   const toggleTheme = () => {
@@ -92,7 +95,8 @@ export function SiteNavbar() {
 
   /* Close mobile menu on route change */
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    const frame = requestAnimationFrame(() => setIsMobileMenuOpen(false));
+    return () => cancelAnimationFrame(frame);
   }, [pathname]);
 
   /* Lock body while mobile menu is open */

@@ -13,7 +13,7 @@ export default function Home() {
     '@context': 'https://schema.org',
     '@type': 'EmploymentAgency',
     name: 'Aditya Group Manpower',
-    url: 'https://www.shivshaktimultiservice.co.in/',
+    url: 'https://adityagroupmanpower.co.in/',
     description: 'Aditya Group Manpower is a modern recruitment consultancy helping people find jobs.',
     address: {
       '@type': 'PostalAddress',

@@ -90,10 +90,10 @@ export async function POST(
       }
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Mark Paid Online API Error:", error);
 
-    if (error.message === "Unauthorized") {
+    if (error instanceof Error && error.message === "Unauthorized") {
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
         { status: 401 }

@@ -31,7 +31,7 @@ export default function ProfileStep2({
       </h2>
 
       <p className="mt-2 text-zinc-500">
-        Tell recruiters where you're currently located.
+        Tell recruiters where you&apos;re currently located.
       </p>
     </div>
 

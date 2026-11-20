@@ -4,11 +4,11 @@
 import Link from "next/link";
 import { toast } from "sonner";
 import { Search, X } from "lucide-react";
-import { Suspense } from "react";
+import { Suspense, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
 import { jobCategories} from "@/lib/job-categories";
 import { CalendarDays } from "lucide-react";
+import type { CandidateRecord } from "@/lib/app-types";
 
 import {
   AlertDialog,
@@ -26,11 +26,11 @@ function CandidatesContent() {
   const searchParams = useSearchParams();
   const typeParam = searchParams.get("type"); // "paid" | "unpaid" | null
   
-  const [candidates, setCandidates] = useState<any[]>([]);
+  const [candidates, setCandidates] = useState<CandidateRecord[]>([]);
   const [loading, setLoading] = useState(true);
   
   // Interview Scheduling State
-  const [schedulingFor, setSchedulingFor] = useState<any>(null);
+  const [schedulingFor, setSchedulingFor] = useState<CandidateRecord | null>(null);
   const [interviewForm, setInterviewForm] = useState({
     companyName: "",
     designation: "",
@@ -54,7 +54,7 @@ function CandidatesContent() {
   const [isAdding, setIsAdding] = useState(false);
 
   // Online Pay State
-  const [onlinePayFor, setOnlinePayFor] = useState<any>(null);
+  const [onlinePayFor, setOnlinePayFor] = useState<CandidateRecord | null>(null);
   const [onlinePayForm, setOnlinePayForm] = useState({
     amount: "999",
     link: "",
@@ -85,11 +85,7 @@ function CandidatesContent() {
 
   const candidatesPerPage = 10;
 
-  useEffect(() => {
-    loadCandidates();
-  }, [typeParam]);
-
-  const loadCandidates = async () => {
+  const loadCandidates = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -100,7 +96,7 @@ function CandidatesContent() {
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response. Please try again.");
         return;
       }
@@ -121,7 +117,12 @@ function CandidatesContent() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [typeParam]);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => void loadCandidates());
+    return () => cancelAnimationFrame(frame);
+  }, [loadCandidates]);
 
   const filteredCandidates = candidates.filter((candidate) => {
     const searchText = search.toLowerCase();
@@ -191,7 +192,8 @@ function CandidatesContent() {
   );
 
   useEffect(() => {
-    setCurrentPage(1);
+    const frame = requestAnimationFrame(() => setCurrentPage(1));
+    return () => cancelAnimationFrame(frame);
   }, [
     search,
     experienceFilter,
@@ -213,7 +215,7 @@ function CandidatesContent() {
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response.");
         return;
       }
@@ -255,7 +257,7 @@ function CandidatesContent() {
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response.");
         return;
       }
@@ -308,7 +310,7 @@ function CandidatesContent() {
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response.");
         return;
       }
@@ -374,7 +376,7 @@ _Manpower & Placement Services_
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response.");
         return;
       }
@@ -513,7 +515,7 @@ _Manpower & Placement Services_
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response.");
         return;
       }
@@ -867,7 +869,7 @@ _Manpower & Placement Services_
 
                             <td className="p-4">
                               {getCategoryLabel(
-                                candidate.selectedJobField
+                                candidate.selectedJobField ?? undefined
                               )}
                             </td>
 
@@ -901,7 +903,7 @@ _Manpower & Placement Services_
 
                             <td className="p-4">
                               <div className="flex gap-2">
-                                {!candidate.user?.payments?.some((p: any) => p.status === "SUCCESS") && (
+                                {!candidate.user?.payments?.some((payment) => payment.status === "SUCCESS") && (
                                   <>
                                     <button
                                       onClick={() => markAsPaidCash(candidate.id)}
@@ -1043,7 +1045,7 @@ _Manpower & Placement Services_
                           </span>
                           <p className="mt-1 wrap-break-words text-zinc-600">
                             {getCategoryLabel(
-                              candidate.selectedJobField
+                              candidate.selectedJobField ?? undefined
                             )}
                           </p>
                         </div>
@@ -1118,7 +1120,7 @@ _Manpower & Placement Services_
                       )}
 
                       <div className="mt-5 grid grid-cols-2 gap-2">
-                        {!candidate.user?.payments?.some((p: any) => p.status === "SUCCESS") && (
+                        {!candidate.user?.payments?.some((payment) => payment.status === "SUCCESS") && (
                           <>
                             <button
                               onClick={() => markAsPaidCash(candidate.id)}

@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import type { CandidateRecord } from "@/lib/app-types";
 
 export default function CandidateDetailsPage() {
   const params = useParams();
@@ -9,16 +10,10 @@ export default function CandidateDetailsPage() {
 
   const id = params?.id as string;
 
-  const [candidate, setCandidate] = useState<any>(null);
+  const [candidate, setCandidate] = useState<CandidateRecord | null>(null);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (id) {
-      loadCandidate();
-    }
-  }, [id]);
-
-  const loadCandidate = async () => {
+  const loadCandidate = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -36,7 +31,13 @@ export default function CandidateDetailsPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (!id) return;
+    const frame = requestAnimationFrame(() => void loadCandidate());
+    return () => cancelAnimationFrame(frame);
+  }, [id, loadCandidate]);
 
   if (loading) {
     return (
@@ -239,7 +240,7 @@ function Info({
   value,
 }: {
   label: string;
-  value: any;
+  value: unknown;
 }) {
   const displayValue =
     value === null ||

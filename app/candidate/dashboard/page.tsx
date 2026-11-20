@@ -6,9 +6,7 @@ import Script from "next/script";
 import Link from "next/link";
 
 import {
-  ArrowRight,
   BriefcaseBusiness,
-  ShieldCheck,
   Sparkles,
   UserRound,
   Calendar,
@@ -19,20 +17,43 @@ import {
 import { DashboardNav } from "@/components/dashboard/dashboard-nav";
 import { InfoCard } from "@/components/dashboard/info-card";
 import { SectionCard } from "@/components/dashboard/section-card";
+import type { CandidateRecord, InterviewRecord, PaymentRecord } from "@/lib/app-types";
+
+type RazorpayResponse = {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+};
+
+type RazorpayOptions = {
+  key: string | undefined;
+  amount: number;
+  currency: string;
+  name: string;
+  description: string;
+  order_id: string;
+  handler: (response: RazorpayResponse) => Promise<void>;
+  prefill: { name: string };
+  theme: { color: string };
+  modal: { ondismiss: () => void };
+};
+
+type RazorpayInstance = { open: () => void };
+type RazorpayConstructor = new (options: RazorpayOptions) => RazorpayInstance;
 
 declare global {
   interface Window {
-    Razorpay: any;
+    Razorpay: RazorpayConstructor;
   }
 }
 
 export default function CandidateDashboardPage() {
   const router = useRouter();
 
-  const [payment, setPayment] = useState<any>(null);
+  const [payment, setPayment] = useState<PaymentRecord | null>(null);
   const [paymentLoading, setPaymentLoading] = useState(true);
 
-  const [profile, setProfile] = useState<any>(null);
+  const [profile, setProfile] = useState<CandidateRecord | null>(null);
   const [loading, setLoading] = useState(true);
   const [authorized, setAuthorized] = useState(false);
   const [paymentProcessing, setPaymentProcessing] = useState(false);
@@ -117,7 +138,7 @@ export default function CandidateDashboardPage() {
         name: "Aditya Group Manpower",
         description: "Candidate Registration Fee",
         order_id: order.id,
-        handler: async function (response: any) {
+        handler: async function (response: RazorpayResponse) {
           try {
             // Verify Payment
             const verifyResponse = await fetch("/api/payment/verify", {
@@ -184,16 +205,15 @@ export default function CandidateDashboardPage() {
 
   const fullName = profile?.user?.fullName || "Candidate";
   const jobField = profile?.preferredJobField || "Not Added";
-  const profileStatus = profile?.user?.profileCompleted ? "Completed" : "Incomplete";
   const isPaid = payment?.status === "SUCCESS";
 
-  const interviews = profile?.interviews || [];
+  const interviews: InterviewRecord[] = profile?.interviews || [];
   
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
-  const upcomingInterviews = interviews.filter((int: any) => new Date(int.date) >= today);
-  const pastInterviews = interviews.filter((int: any) => new Date(int.date) < today);
+  const upcomingInterviews = interviews.filter((interview) => new Date(interview.date) >= today);
+  const pastInterviews = interviews.filter((interview) => new Date(interview.date) < today);
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
@@ -290,7 +310,7 @@ export default function CandidateDashboardPage() {
                       <div>
                         <h3 className="mb-3 font-semibold text-green-600">Upcoming Interviews</h3>
                         <div className="flex flex-col gap-3">
-                          {upcomingInterviews.map((interview: any) => (
+                          {upcomingInterviews.map((interview) => (
                             <div key={interview.id} className="rounded-xl border border-green-200 bg-green-50 p-4">
                               <p className="font-bold text-zinc-900">{interview.companyName}</p>
                               {interview.designation && <p className="text-sm font-semibold text-green-700">{interview.designation}</p>}
@@ -310,7 +330,7 @@ export default function CandidateDashboardPage() {
                       <div>
                         <h3 className="mb-3 font-semibold text-zinc-500">Previous Interviews</h3>
                         <div className="flex flex-col gap-3">
-                          {pastInterviews.map((interview: any) => (
+                          {pastInterviews.map((interview) => (
                             <div key={interview.id} className="rounded-xl border bg-zinc-50 p-4 opacity-75">
                               <p className="font-bold text-zinc-900">{interview.companyName}</p>
                               {interview.designation && <p className="text-sm font-semibold text-zinc-600">{interview.designation}</p>}

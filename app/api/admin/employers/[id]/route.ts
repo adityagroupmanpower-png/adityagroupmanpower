@@ -35,17 +35,17 @@ export async function DELETE(
       success: true,
       message: "Employer deleted successfully.",
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("API Error (Admin Employers DELETE):", error);
 
-    if (error.message === "Unauthorized") {
+    if (error instanceof Error && error.message === "Unauthorized") {
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
         { status: 401 }
       );
     }
 
-    if (error.message === "Forbidden") {
+    if (error instanceof Error && error.message === "Forbidden") {
       return NextResponse.json(
         { success: false, message: "Forbidden" },
         { status: 403 }

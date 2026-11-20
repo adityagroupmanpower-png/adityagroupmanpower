@@ -49,10 +49,10 @@ export async function PUT(request: Request) {
       message: "Candidate status updated successfully.",
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
 
-    if (error.message === "Unauthorized") {
+    if (error instanceof Error && error.message === "Unauthorized") {
       return NextResponse.json(
         {
           success: false,
@@ -62,7 +62,7 @@ export async function PUT(request: Request) {
       );
     }
 
-    if (error.message === "Forbidden") {
+    if (error instanceof Error && error.message === "Forbidden") {
       return NextResponse.json(
         {
           success: false,

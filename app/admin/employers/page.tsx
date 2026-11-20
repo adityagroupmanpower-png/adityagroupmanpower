@@ -2,7 +2,8 @@
 
 import { toast } from "sonner";
 import { Search, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import type { EmployerRecord } from "@/lib/app-types";
 
 import {
   AlertDialog,
@@ -17,7 +18,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 export default function EmployersPage() {
-  const [employers, setEmployers] = useState<any[]>([]);
+  const [employers, setEmployers] = useState<EmployerRecord[]>([]);
   const [loading, setLoading] = useState(true);
 
   const [stats, setStats] = useState({
@@ -33,11 +34,7 @@ export default function EmployersPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const employersPerPage = 10;
 
-  useEffect(() => {
-    loadEmployers();
-  }, []);
-
-  const loadEmployers = async () => {
+  const loadEmployers = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -47,7 +44,7 @@ export default function EmployersPage() {
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response. Please try again.");
         return;
       }
@@ -66,7 +63,12 @@ export default function EmployersPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => void loadEmployers());
+    return () => cancelAnimationFrame(frame);
+  }, [loadEmployers]);
 
   const filteredEmployers = employers.filter((employer) => {
     const searchText = search.toLowerCase();
@@ -95,7 +97,8 @@ export default function EmployersPage() {
   );
 
   useEffect(() => {
-    setCurrentPage(1);
+    const frame = requestAnimationFrame(() => setCurrentPage(1));
+    return () => cancelAnimationFrame(frame);
   }, [search, statusFilter]);
 
   const deleteEmployer = async (id: string) => {
@@ -108,7 +111,7 @@ export default function EmployersPage() {
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response.");
         return;
       }
@@ -142,7 +145,7 @@ export default function EmployersPage() {
       try {
         const text = await response.text();
         result = text ? JSON.parse(text) : {};
-      } catch (err) {
+      } catch {
         toast.error("Invalid server response.");
         return;
       }

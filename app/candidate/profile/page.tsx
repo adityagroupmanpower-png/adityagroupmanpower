@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Script from "next/script";
 import { Loader2 } from "lucide-react";
 import { SiteNavbar } from "@/components/site-navbar";
 import ProfileStep1 from "@/components/candidate/profile-step-1";
@@ -13,12 +12,6 @@ import {
   jobCategories,
   jobCategoryNames,
 } from "@/lib/job-categories";
-
-declare global {
-  interface Window {
-    Razorpay: any;
-  }
-}
 
 export default function CandidateProfilePage() {
   const [fullName, setFullName] = useState("");
@@ -605,9 +598,7 @@ export default function CandidateProfilePage() {
                 expPastSalary={expPastSalary}
                 expExpectedSalary={expExpectedSalary}
 
-                onChange={
-                  handleProfessionalChange as any
-                }
+                onChange={handleProfessionalChange}
 
                 // New category handler
                 onJobFieldChange={

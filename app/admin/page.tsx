@@ -3,28 +3,19 @@
 import { useEffect, useState } from "react";
 import {
   Users,
-  BriefcaseBusiness,
   Building2,
   IndianRupee,
   UserCheck,
 } from "lucide-react";
 
 import Link from "next/link";
-
-type Candidate = {
-  id: string;
-  createdAt: string;
-  user: {
-    fullName: string;
-    email: string;
-  };
-};
+import type { CandidateRecord, EmployerRecord } from "@/lib/app-types";
 
 
 
 export default function AdminDashboardPage() {
-  const [candidates, setCandidates] = useState<any[]>([]);
-  const [employers, setEmployers] = useState<any[]>([]);
+  const [candidates, setCandidates] = useState<CandidateRecord[]>([]);
+  const [employers, setEmployers] = useState<EmployerRecord[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -55,7 +46,7 @@ export default function AdminDashboardPage() {
   }, []);
 
   const paidUsers = candidates.filter(
-    (c) => c.user?.payments?.some((p: any) => p.status === "SUCCESS")
+    (c) => c.user?.payments?.some((payment) => payment.status === "SUCCESS")
   ).length;
 
   const unpaidUsers = candidates.length - paidUsers;
@@ -105,8 +96,8 @@ export default function AdminDashboardPage() {
             value={`₹${(
               candidates.reduce((total, c) => {
                 const payments = c.user?.payments || [];
-                const successfulPayments = payments.filter((p: any) => p.status === "SUCCESS");
-                const amount = successfulPayments.reduce((sum: number, p: any) => sum + p.amount, 0);
+                const successfulPayments = payments.filter((payment) => payment.status === "SUCCESS");
+                const amount = successfulPayments.reduce((sum, payment) => sum + payment.amount, 0);
                 return total + amount;
               }, 0) / 100 // Divide by 100 because Razorpay amount is in paise
             ).toLocaleString("en-IN")}`}
@@ -142,7 +133,7 @@ export default function AdminDashboardPage() {
                           <p className="truncate font-semibold">
                             {candidate.user.fullName}
                           </p>
-                          {candidate.user?.payments?.some((p: any) => p.status === "SUCCESS") ? (
+                          {candidate.user?.payments?.some((payment) => payment.status === "SUCCESS") ? (
                             <span className="inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 text-[10px] font-medium text-green-700 ring-1 ring-inset ring-green-600/20">
                               Paid
                             </span>

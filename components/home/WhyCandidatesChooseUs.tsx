@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type PointerEvent as ReactPointerEvent,
+} from "react";
 
 const benefits = [
   { number: "01", title: "Registration Process", description: "Pay a ₹999 non-refundable fee to create your candidate profile for the recruitment process." },
@@ -47,19 +53,26 @@ function CandidateSlider() {
 
   const candidateTicker = [...testimonials, ...testimonials];
 
-  const getHalfWidth = () => sliderRef.current?.scrollWidth ? sliderRef.current.scrollWidth / 2 : 0;
+  const getHalfWidth = useCallback(() => {
+    return sliderRef.current?.scrollWidth
+      ? sliderRef.current.scrollWidth / 2
+      : 0;
+  }, []);
 
-  const applyPosition = (position: number) => {
-    const slider = sliderRef.current;
-    const halfWidth = getHalfWidth();
-    if (!slider || !halfWidth) return;
+  const applyPosition = useCallback(
+    (position: number) => {
+      const slider = sliderRef.current;
+      const halfWidth = getHalfWidth();
+      if (!slider || !halfWidth) return;
 
-    while (position <= -halfWidth) position += halfWidth;
-    while (position > 0) position -= halfWidth;
+      while (position <= -halfWidth) position += halfWidth;
+      while (position > 0) position -= halfWidth;
 
-    positionRef.current = position;
-    slider.style.transform = `translate3d(${position}px, 0, 0)`;
-  };
+      positionRef.current = position;
+      slider.style.transform = `translate3d(${position}px, 0, 0)`;
+    },
+    [getHalfWidth]
+  );
 
   useEffect(() => {
     const speed = 42;
@@ -82,7 +95,7 @@ function CandidateSlider() {
     return () => {
       if (animationFrameRef.current !== null) cancelAnimationFrame(animationFrameRef.current);
     };
-  }, []);
+  }, [applyPosition]);
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     const slider = sliderRef.current;

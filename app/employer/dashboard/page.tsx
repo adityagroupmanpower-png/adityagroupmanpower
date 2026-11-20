@@ -30,7 +30,7 @@ async function getEmployerProfile() {
     }
 
     return employer;
-  } catch (error) {
+  } catch {
     redirect("/employer/login");
   }
 }

@@ -37,17 +37,17 @@ export async function PUT(request: Request) {
       success: true,
       message: "Status updated successfully.",
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("API Error (Admin Employers Status PUT):", error);
 
-    if (error.message === "Unauthorized") {
+    if (error instanceof Error && error.message === "Unauthorized") {
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
         { status: 401 }
       );
     }
 
-    if (error.message === "Forbidden") {
+    if (error instanceof Error && error.message === "Forbidden") {
       return NextResponse.json(
         { success: false, message: "Forbidden" },
         { status: 403 }

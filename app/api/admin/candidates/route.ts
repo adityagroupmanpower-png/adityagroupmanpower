@@ -50,10 +50,10 @@ export async function GET(req: Request) {
       stats,
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error(error);
 
-    if (error.message === "Unauthorized") {
+    if (error instanceof Error && error.message === "Unauthorized") {
       return NextResponse.json(
         {
           success: false,
@@ -63,7 +63,7 @@ export async function GET(req: Request) {
       );
     }
 
-    if (error.message === "Forbidden") {
+    if (error instanceof Error && error.message === "Forbidden") {
       return NextResponse.json(
         {
           success: false,

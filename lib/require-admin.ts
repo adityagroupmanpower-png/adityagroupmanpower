@@ -19,8 +19,8 @@ export async function requireAdmin() {
     }
 
     return payload;
-  } catch (error: any) {
-    if (error.message === "Forbidden") {
+  } catch (error: unknown) {
+    if (error instanceof Error && error.message === "Forbidden") {
       throw error;
     }
     // Token verification failed (e.g. invalid signature, expired)

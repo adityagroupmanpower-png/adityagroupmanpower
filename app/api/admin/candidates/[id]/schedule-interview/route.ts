@@ -113,10 +113,10 @@ export async function POST(
       interview: newInterview,
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Schedule Interview Error:", error);
 
-    if (error.message === "Unauthorized") {
+    if (error instanceof Error && error.message === "Unauthorized") {
       return NextResponse.json(
         { success: false, message: "Unauthorized" },
         { status: 401 }

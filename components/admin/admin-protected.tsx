@@ -26,7 +26,7 @@ export default function AdminProtected({
       return;
     }
 
-    setChecking(false);
+    const frame = requestAnimationFrame(() => setChecking(false));
 
     // Set up a global fetch interceptor to catch 401s
     const originalFetch = window.fetch;
@@ -41,6 +41,7 @@ export default function AdminProtected({
     };
 
     return () => {
+      cancelAnimationFrame(frame);
       window.fetch = originalFetch;
     };
   }, [router]);

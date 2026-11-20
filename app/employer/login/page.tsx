@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ArrowLeft, Building2 } from "lucide-react";
 import { useState } from "react";
 import { AuthButton } from "@/components/auth/auth-button";
@@ -9,7 +8,6 @@ import { AuthCard } from "@/components/auth/auth-card";
 import { AuthInput } from "@/components/auth/auth-input";
 
 export default function EmployerLoginPage() {
-  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -104,7 +102,7 @@ export default function EmployerLoginPage() {
               footer={
                 <div className="space-y-3">
                   <p>
-                    Don't have an employer account?{" "}
+                    Don&apos;t have an employer account?{" "}
                     <Link
                       href="/employer/register"
                       className="font-semibold text-zinc-950 transition hover:text-zinc-600 dark:text-white dark:hover:text-zinc-300"

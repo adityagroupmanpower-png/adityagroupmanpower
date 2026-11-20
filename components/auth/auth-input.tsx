@@ -1,6 +1,5 @@
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 type AuthInputProps = {
   id: string;

@@ -28,8 +28,6 @@ export default function ContactSection() {
         }));
     };
 
-    const [loading, setLoading] = useState(false);
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -41,7 +39,7 @@ export default function ContactSection() {
         const text = `Hi, I am ${formData.name}.\nEmail: ${formData.email}\nPhone: ${formData.phone}\nMessage: ${formData.message}`;
         const encodedText = encodeURIComponent(text);
         const whatsappUrl = `https://wa.me/919458127513?text=${encodedText}`;
-        
+
         window.open(whatsappUrl, '_blank');
         toast.success("Redirecting to WhatsApp...");
         setFormData({ name: "", email: "", phone: "", message: "" });
@@ -766,7 +764,6 @@ export default function ContactSection() {
 
                             <button
                                 type="submit"
-                                disabled={loading}
                                 className="
                   group
                   inline-flex
@@ -795,19 +792,17 @@ export default function ContactSection() {
                   dark:hover:bg-zinc-200
                 "
                             >
-                                {loading ? "Sending..." : "Send Message"}
+                              Send Message
 
-                                {!loading && (
-                                    <Send
-                                        size={16}
-                                        strokeWidth={2}
-                                        className="
+                              <Send
+                                size={16}
+                                strokeWidth={2}
+                                className="
                         transition-transform
                         duration-300
                         group-hover:translate-x-1
                       "
-                                    />
-                                )}
+                              />
                             </button>
 
                             <p

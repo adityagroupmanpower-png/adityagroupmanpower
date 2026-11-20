@@ -22,7 +22,8 @@ export function DashboardNav() {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
 
     if (user.fullName) {
-      setName(user.fullName);
+      const frame = requestAnimationFrame(() => setName(user.fullName));
+      return () => cancelAnimationFrame(frame);
     }
   }, []);
 
