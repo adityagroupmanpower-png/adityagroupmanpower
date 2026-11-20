@@ -64,8 +64,8 @@ export async function POST(
 
     // Send email
     try {
-      await resend.emails.send({
-        from: "Aditya Group Manpower <info@shivshaktimultiservice.co.in>",
+      const { error: emailError } = await resend.emails.send({
+        from: "Aditya Group Manpower <info@adityagroupmanpower.co.in>",
         to: candidate.user.email,
         replyTo: "adityagroupmanpower@gmail.com",
         subject: `✨ INTERVIEW INVITATION: ${companyName}`,
@@ -91,7 +91,7 @@ export async function POST(
             Please arrive 10–15 minutes before the scheduled time and come prepared with the necessary documents and a copy of your updated resume.</p>
 
             <p>We wish you success in your interview and look forward to your presence.<br/>
-            Please Provide Rating: <a href="https://g.page/r/CZZBLKQak0G_EBE/review" style="color: #0066cc;">https://g.page/r/CZZBLKQak0G_EBE/review</a></p>
+            View Our Location: <a href="https://g.co/kgs/fZ2bX86" style="color: #0066cc;">https://g.co/kgs/fZ2bX86</a></p>
 
             <p>Warm Regards,<br/>
             <strong>Aditya Group Manpower</strong><br/>
@@ -99,6 +99,10 @@ export async function POST(
           </div>
         `,
       });
+
+      if (emailError) {
+        throw new Error(`Resend interview email failed: ${emailError.message}`);
+      }
     } catch (emailError) {
       console.error("Failed to send interview email:", emailError);
     }

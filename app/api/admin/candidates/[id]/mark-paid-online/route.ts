@@ -56,7 +56,7 @@ export async function POST(
       );
     }
 
-    const receiptNumber = `ONLINE_${Date.now()}_${candidate.userId.substring(0, 5)}`;
+    const receiptNumber = `AGM-ONLINE-${Date.now()}-${candidate.userId.substring(0, 5)}`;
 
     const newPayment = await prisma.payment.create({
       data: {

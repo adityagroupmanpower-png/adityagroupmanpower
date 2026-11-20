@@ -36,6 +36,17 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, message: "Payment has not been captured." }, { status: 400 });
     }
 
+    if (
+      payment.order_id !== razorpay_order_id ||
+      Number(payment.amount) !== 99900 ||
+      payment.currency !== "INR"
+    ) {
+      return NextResponse.json(
+        { success: false, message: "Payment amount or order details do not match." },
+        { status: 400 },
+      );
+    }
+
     // 5. GET USER
     const user = await prisma.user.findUnique({
       where: { id: userId },
@@ -59,7 +70,7 @@ export async function POST(req: Request) {
         paymentRecord = existingPayment;
       } else {
         // Existing payment but receipt number missing
-        finalReceiptNumber = `SSMS-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
+        finalReceiptNumber = `AGM-RZP-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
         paymentRecord = await prisma.payment.update({
           where: { id: existingPayment.id },
           data: { receiptNumber: finalReceiptNumber },
@@ -67,7 +78,7 @@ export async function POST(req: Request) {
       }
     } else {
       // 8. New payment
-      finalReceiptNumber = `SSMS-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
+      finalReceiptNumber = `AGM-RZP-${Date.now()}-${Math.floor(1000 + Math.random() * 9000)}`;
       paymentRecord = await prisma.payment.create({
         data: {
           userId,
@@ -100,7 +111,6 @@ export async function POST(req: Request) {
     const darkGray = rgb(0.25, 0.25, 0.25);
     const gray = rgb(0.45, 0.45, 0.45);
     const lightGray = rgb(0.90, 0.90, 0.90);
-    const boxGray = rgb(0.96, 0.96, 0.96);
     const green = rgb(0.05, 0.45, 0.18);
 
     // HELPER FUNCTIONS
@@ -125,7 +135,7 @@ export async function POST(req: Request) {
 
     // TITLE
     drawCenteredText("PAYMENT RECEIPT", height - 135, 24, boldFont, black);
-    drawCenteredText("Candidate Registration", height - 158, 11, regularFont, gray);
+    drawCenteredText("Candidate Registration", height - 151, 11, regularFont, gray);
 
     // SUMMARY BOX
     const summaryX = 35;
@@ -181,7 +191,8 @@ export async function POST(req: Request) {
     page.drawLine({ start: { x: 190, y: candidateBoxY + 82 }, end: { x: 545, y: candidateBoxY + 82 }, thickness: 1, color: lightGray });
 
     page.drawText("Name", { x: 50, y: candidateBoxY + 52, size: 10, font: boldFont });
-    page.drawText(user.fullName, { x: 430, y: candidateBoxY + 52, size: 10, font: regularFont });
+    const candidateNameWidth = regularFont.widthOfTextAtSize(user.fullName, 10);
+    page.drawText(user.fullName, { x: 545 - candidateNameWidth, y: candidateBoxY + 52, size: 10, font: regularFont });
     page.drawLine({ start: { x: 50, y: candidateBoxY + 40 }, end: { x: 545, y: candidateBoxY + 40 }, thickness: 0.6, color: lightGray });
 
     page.drawText("Email", { x: 50, y: candidateBoxY + 18, size: 10, font: boldFont });
@@ -234,22 +245,22 @@ export async function POST(req: Request) {
 
     // FOOTER
     page.drawLine({ start: { x: 35, y: 55 }, end: { x: 560, y: 55 }, thickness: 1, color: darkGray });
-    drawCenteredText("www.shivshaktimultiservice.co.in", 35, 8, regularFont, darkGray);
+    drawCenteredText("info@adityagroupmanpower.co.in", 35, 8, regularFont, darkGray);
 
     // SAVE PDF
     const pdfBytes = await pdfDoc.save();
     const pdfBuffer = Buffer.from(pdfBytes);
 
     // EMAIL
-    const emailResult = await resend.emails.send({
-      from: "Aditya Group Manpower <info@shivshaktimultiservice.co.in>",
+    const { data: emailData, error: emailError } = await resend.emails.send({
+      from: "Aditya Group Manpower <info@adityagroupmanpower.co.in>",
       to: user.email,
       replyTo: "adityagroupmanpower@gmail.com",
       subject: "Payment Receipt - Aditya Group Manpower",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; color: #18181b;">
           <h2 style="margin-bottom: 5px;">Aditya Group Manpower</h2>
-          <p>Dear Sir/Mam ${user.fullName},</p>
+          <p>Dear ${user.fullName},</p>
           <p>Your candidate registration payment has been successfully verified.</p>
           <div style="border: 1px solid #e4e4e7; border-radius: 8px; padding: 18px; margin: 20px 0;">
             <p><strong>Receipt Number:</strong> ${finalReceiptNumber}</p>
@@ -265,7 +276,11 @@ export async function POST(req: Request) {
       attachments: [{ filename: `${finalReceiptNumber}.pdf`, content: pdfBuffer }],
     });
 
-    console.log("Receipt email sent:", emailResult);
+    if (emailError) {
+      throw new Error(`Resend receipt email failed: ${emailError.message}`);
+    }
+
+    console.log("Receipt email sent:", emailData);
 
     // SUCCESS RESPONSE
     return NextResponse.json({

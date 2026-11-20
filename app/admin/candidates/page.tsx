@@ -336,7 +336,7 @@ We are pleased to confirm that your payment has been successfully received. Welc
 
 \u{2B50} *We Value Your Feedback*
 We would love to hear about your experience with Aditya Group Manpower.
-\u{1F449} [Leave a Review: https://g.page/r/CZZBLKQak0G_EBE/review]
+\u{1F449} [View Our Location: https://g.co/kgs/fZ2bX86]
 
 Thank you for choosing us! \u{1F91D}
 
@@ -403,7 +403,7 @@ Important:
 Please arrive 10–15 minutes before the scheduled time and come prepared with the necessary documents and a copy of your updated resume.
 
 We wish you success in your interview and look forward to your presence.
-Please Provide Rating : https://g.page/r/CZZBLKQak0G_EBE/review 
+View Our Location: https://g.co/kgs/fZ2bX86
 
 Warm Regards,
 Aditya Group Manpower
@@ -482,7 +482,7 @@ We are pleased to inform you that your profile has been processed successfully. 
 \u{26A0}\u{FE0F} *Important Note:* Once the payment is completed, kindly reply to this message with a *screenshot of the payment receipt* for confirmation.
 
 \u{2B50} *We Value Your Feedback*
-\u{1F449} [Leave a Review: https://g.page/r/CZZBLKQak0G_EBE/review]
+\u{1F449} [View Our Location: https://g.co/kgs/fZ2bX86]
 
 Thank you! \u{1F91D}
 
@@ -541,7 +541,7 @@ We are pleased to confirm that your online payment has been successfully receive
 
 \u{2B50} *We Value Your Feedback*
 We would love to hear about your experience with Aditya Group Manpower.
-\u{1F449} [Leave a Review: https://g.page/r/CZZBLKQak0G_EBE/review]
+\u{1F449} [View Our Location: https://g.co/kgs/fZ2bX86]
 
 Thank you for choosing us! \u{1F91D}
 

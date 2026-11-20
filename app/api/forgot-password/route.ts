@@ -65,8 +65,8 @@ if (!success) {
       },
     });
 
-    await resend.emails.send({
-      from: "Aditya Group Manpower <info@shivshaktimultiservice.co.in>",
+    const { error: emailError } = await resend.emails.send({
+      from: "Aditya Group Manpower <info@adityagroupmanpower.co.in>",
       to: cleanEmail,
       replyTo: "adityagroupmanpower@gmail.com",
       subject: "Password Reset OTP",
@@ -83,6 +83,10 @@ if (!success) {
         </div>
       `,
     });
+
+    if (emailError) {
+      throw new Error(`Resend OTP email failed: ${emailError.message}`);
+    }
 
     return NextResponse.json({
       success: true,

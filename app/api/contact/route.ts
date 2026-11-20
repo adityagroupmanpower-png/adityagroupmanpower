@@ -29,8 +29,8 @@ export async function POST(request: Request) {
     const { name, email, phone, message } = result.data;
 
     // Send email using Resend
-    await resend.emails.send({
-      from: "Aditya Group Manpower <info@shivshaktimultiservice.co.in>",
+    const { error: emailError } = await resend.emails.send({
+      from: "Aditya Group Manpower <info@adityagroupmanpower.co.in>",
       to: "adityagroupmanpower@gmail.com",
       replyTo: "adityagroupmanpower@gmail.com",
       subject: `New Contact Request from ${name}`,
@@ -43,6 +43,10 @@ export async function POST(request: Request) {
         <p>${message}</p>
       `,
     });
+
+    if (emailError) {
+      throw new Error(`Resend contact email failed: ${emailError.message}`);
+    }
 
     return NextResponse.json({
       success: true,

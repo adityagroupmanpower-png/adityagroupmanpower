@@ -58,7 +58,7 @@ export async function POST(
       );
     }
 
-    const receiptNumber = `CASH_${Date.now()}_${candidate.userId.substring(0, 5)}`;
+    const receiptNumber = `AGM-CASH-${Date.now()}-${candidate.userId.substring(0, 5)}`;
 
     const newPayment = await prisma.payment.create({
       data: {
