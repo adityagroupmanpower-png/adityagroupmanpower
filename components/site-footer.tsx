@@ -189,6 +189,18 @@ export function SiteFooter() {
 
           <div className="flex flex-wrap items-center gap-3">
 
+            <p>
+              Developed by{" "}
+              <a
+                href="https://www.yashworks.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-white transition hover:text-zinc-300 dark:text-black dark:hover:text-zinc-700"
+              >
+                www.yashworks.in
+              </a>
+            </p>
+
             <Link href="/terms" className="rounded-md border border-white/40 px-2.5 py-1 font-semibold text-white transition hover:bg-white hover:text-black dark:border-black/30 dark:text-black dark:hover:bg-black dark:hover:text-white">
               Terms & Conditions
             </Link>
